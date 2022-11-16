@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_invoice_wdiscount_lines_form_view" model="ir.ui.view">
+            <field name="name">Account Weight</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Descuentos/Cargos">
+                        <group>
+                        
+                            <field name="account_invoice_line_discount_ids" nolabel="1">
+                                <tree string="Invoice Lines" editable="bottom" >
+                                    <!-- <control>
+                                        <create string="Add a line"/>
+                                        <create string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                        <create string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                    </control> -->
+
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id" domain="[('sale_ok','=',True)]"/>
+                                    <field name="compute_type"/>
+                                    <field name="compute_mode"/>
+                                    <!-- <field name="origin" invisible="1"/> -->
+                                    <field name="is_rounding_line" invisible="1"/>
+                                    <field name="name"/>
+                                    <!-- <field name="display_type" invisible="1"/> -->
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="account_id" groups="account.group_account_user" domain="[('company_id', '=', parent.company_id), ('internal_type', '=', 'other'), ('deprecated', '=', False)]"/>
+                                    <field name="account_analytic_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id)]" context="{'default_partner_id': parent.partner_id}"/>
+                                    <field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    <field name="quantity" invisible="1"/>
+                                    <field name="uom_id" groups="uom.group_uom" invisible="1"/>
+                                    <field name="price_unit" string="Price" /> <!-- attrs="{'readonly':[('compute_type','=','discount')]}" -->
+                                    <field name="price_tax" invisible="1"/>
+                                    <field name="discount" groups="base.group_no_one" string="Disc (%)" /> <!--attrs="{'readonly':[('compute_type','=','charge')]}"-->
+                                    <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}" context="{'type':parent.type, 'tree_view_ref': 'account.account_tax_view_tree', 'search_view_ref': 'account.account_tax_view_search'}" domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]"/>
+                                    <field name="price_subtotal" string="Subtotal"/>
+                                    <field name="price_total" string="Total"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+
+	
+</odoo>

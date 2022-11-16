@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_update_multi_chart" model="ir.ui.view">
+        <field name="name">Update Digits Account</field>
+        <field name="model">account.digits.update.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="number_of_digits"></field>
+                    <field name="company_id"></field>
+                </group>
+
+                <footer>
+                <button name="action_update_digits" string="Update" type="object" class="oe_highlight" />
+                <span> or </span>
+                <button special="cancel" string="Close" class="oe_link" />
+            </footer>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_update_digits_account" model="ir.actions.act_window">
+        <field name="name">Update chart of accounts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.digits.update.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
